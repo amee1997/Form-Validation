@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<!-- starts of head -->
+<head>
+    <meta charset="utf-8">
+    <title>Register Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- starts of style -->
+  <style>
+  #main{
+    width:60%;
+    height: 35em;
+    border: 1px solid black;
+    margin-left: 20%;
+    margin-top: 5%;
+    background-color: grey;
+  }
+  #settings{
+    width:38%;
+    height: 35em;
+    box-sizing: border-box;
+    border: 8px solid pink;
+    background-color: white;
+    padding-left: 10px;
+    padding-top: 10px;
+    margin-left: 7%;
+  }
+  #profile{
+    width:38%;
+    height: 35em;
+    box-sizing: border-box;
+    border: 8px solid pink;
+    background-color: white;
+    margin-left: 50%;
+    margin-bottom: 60%;
+    margin-top: -70%;
+  }
+ button{
+   width: 30%;
+   color:white;
+   background-color: black;
+   border-radius: 15%;
+   margin-left: 60%;
+   height: 2em;
+   margin-top: 10%;
+ }
+ #img1{
+   width: 7%;
+   height: 3%;
+   display: none;
+ }
+ #img2{
+   width: 5%;
+   height: 3%;
+   display: none;
+ }
+ #img3{
+   width: 7%;
+   height: 3%;
+   display: none;
+ }
+#img4{
+   width: 5%;
+   height: 3%;
+   display: none;
+ }
+    </style>
+    <!-- ends of style -->
+  </head>
+<!-- ends of head -->
+<!-- starts of body -->
+    <body>
+      <div id="main">
+
+      <div id="settings">
+        <p>Settings<br><br>Name:</p>
+        <input type="text" name="text" id="uname" placeholder="Enter your name" onblur="myFunction2()"><br><br>
+        <p id="demo2"></p>
+        <p>Email:</p><input type="text" id="email"  name="text" placeholder="Enter your Email" onblur="myFunction()"><br><br>
+        <p id="demo1"></p>
+        <p>Password:</p><input type="password" id="pass" name="password" placeholder="Enter your Password" onblur="myFunction3()"><img src="tick.png" id="img3" alt="image"><img src="cross.png" alt="image" id="img4"><p id="demo9"><br>
+        <p id="demo3"></p>
+        <p>Confirm Password:</p><input type="password" id="con" name="password" placeholder="Confirm Password"  onblur="myFunction4()"><img src="tick.png" id="img1" alt="image"><img src="cross.png" alt="image" id="img2"><p id="demo5"></p><br>
+        <p id="demo4"></p>
+     </div>
+     <div id="profile"><br>
+       <p>Profile<br><br>Birthday:</p>
+       <input type="date" name="date" id="calender" placeholder="Enter your birthday" onblur="myFunction5()"><br><br>
+       <p id="demo6"></p>
+       <p>Short Bio(max 140 characters):</p>
+       <textarea name="name" rows="5" cols="37" id="msg" placeholder="bio" onkeyup="myFunction6()"></textarea>
+       <p id="demo8"></p>
+       <br>
+       <br>
+       <button >Register</button>
+     </div>
+
+     </div>
+<!-- starts of script -->
+<script>
+// function for validating the email
+ function myFunction(){
+            var email = document.getElementById('email');
+            var val = /^[a-z][a-zA-Z0-9_.]*(\.[a-zA-Z][a-zA-Z0-9_.]*)?@[a-z][a-zA-Z-0-9]*\.[a-z]+(\.[a-z]+)?$/;
+            if (!val.test(email.value)) {
+                 demo1.innerHTML="Please provide a valid email address";
+                 return false;
+                }
+               }
+function myFunction2(){
+  // function for showing this field is required
+           var name = document.getElementById('uname');
+           if(name.value.length==0){
+                demo2.innerHTML="Field is required";
+              }
+            }
+// function for validating the password
+function myFunction3(){
+          var pwd = document.getElementById('pass');
+          if(pwd.value.length<=8){
+              $("#img4").show()
+              document.getElementById("demo9").innerHTML="Password contains atleast 8 characters";
+           }
+         else{
+             $("#img3").show()
+             }
+           }
+// function for checking if the password and confirm password feild is same
+function myFunction4() {
+          var pwd = document.getElementById('pass').value;
+          var confirm = document.getElementById('con').value;
+          if (pwd === confirm ) {
+              $("#img1").show()
+            }
+        else{
+              $("#img2").show()
+            }
+      }
+// function for checking the age
+function myFunction5(){
+      var d = document.getElementById('calender');
+      var dob = new Date();
+      var year = dob.getFullYear();
+      var yr = d.value.split("-")[0];
+      var age = year-yr;
+       if(age<=18)
+          {
+          document.getElementById("demo6").innerHTML="You need a parent permission to join.Tick here if your child can join"+"<input type=checkbox>";
+          }
+      else{
+          document.getElementById("demo6").innerHTML="Eligible";
+          }
+        }
+// function for finding the count
+     function myFunction6(){
+       var length=140;
+       var x = document.getElementById("msg").value.length;
+       var y = 140-x;
+       if(y>=0)
+       {
+         document.getElementById("demo8").innerHTML=y;
+       }
+     }
+   </script>
+   <!-- ends of style -->
+  </body>
+  <!-- ends of body -->
+</html>
